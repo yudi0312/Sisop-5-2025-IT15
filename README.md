@@ -1,11 +1,12 @@
-# Sisop-5-2025-IT-Template
+# Sisop-5-2025-IT15
 
 ## Kelompok
 
 Nama | NRP
 --- | ---
-Amoes Noland | 5027231028
-Rafi' Afnaan Fathurrahman | 5027231040
+Putu Yudi Nandanjaya Wiraguna	| 5027241080
+Naruna Vicranthyo Putra Gangga | 5027241105
+Az Zahrra Tasya Adelia | 5027241087
 
 ## Daftar Isi
 
