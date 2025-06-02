@@ -23,7 +23,7 @@ void handleYogurt() {
     responses[0] = "yo";
     responses[1] = "ts unami gng </3";
     responses[2] = "sygau";
-    count = 3;
+    count = 3;  
 
     index = mod_safe(getBiosTick(), count); 
 
@@ -128,13 +128,12 @@ void handleCommand(char *cmd, char arg[2][64], char *buf) {
         clearScreen(textColor);
         strcpy(host, "");
         strcpy(currentUsername, "user");
-        printString("Returned to neutral. Username reset.\n");
         printString("\r");
 
     } else if (strcmp(cmd, "add") || strcmp(cmd, "sub") || strcmp(cmd, "mul") || strcmp(cmd, "div")) {
         int a = 0, b = 0, res = 0;
         char resultStr[64];
-
+        
         atoi(arg[0], &a);
         atoi(arg[1], &b);
 
@@ -152,6 +151,7 @@ void handleCommand(char *cmd, char arg[2][64], char *buf) {
         itoa(res, resultStr);
         printString(resultStr);
         printString("\r\n");
+    
         
     } else if (strcmp(cmd, "yogurt")) {
         handleYogurt();
