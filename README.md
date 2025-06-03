@@ -175,7 +175,8 @@ Pada suatu hari, anda merasa sangat lelah dari segala macam praktikum yang sudah
 
 [Akses Video dalam Assets](./assets/demo.mkv)
 
-https://github.com/user-attachments/assets/1cfa66b1-b2f5-4e3e-a4b2-ec8b012f6fbb
+https://github.com/user-attachments/assets/c8b10c0b-475a-4ae6-8714-a9ca529d5d42
+
 
 
 ## Laporan
