@@ -343,22 +343,17 @@ Makefile disiapkan untuk membantu membangun sistem operasi ini dengan target:
 
 **Cara Menjalankan di Terminal:**
 
-* Bersihkan build sebelumnya: 
-```
-make clean
-```
-
 * Buat image dari awal:
 ```
 make build
 ```
 > Output: bin/floppy.img yang siap dijalankan di emulator.
+*perintah ini sekaligus menghapus perintah build sebelumnya + membuat image dari awal.
 
+output:
 
-* Jalankan target spesifik (contoh: hanya kernel):
-```
-make kernel
-```
+![image](https://github.com/user-attachments/assets/6a23ba97-7410-49e7-acb4-16109693e7df)
+
 
 ---
 
