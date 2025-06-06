@@ -181,4 +181,191 @@ https://github.com/user-attachments/assets/c8b10c0b-475a-4ae6-8714-a9ca529d5d42
 
 ## Laporan
 
-> Isi sesuai pengerjaan.
+# Laporan Pengerjaan EorzeOS
+
+EorzeOS adalah sebuah sistem operasi sederhana berbasis shell interaktif yang dibangun sebagai respons dari skenario fiksi pada dunia "Eorzea". Sistem ini mencakup fitur percakapan (echo), pengubahan identitas pengguna, terminal tematik berdasarkan Grand Company, kalkulator, dan build system.
+
+---
+
+## 1. The Echo
+
+Shell akan membalas input yang tidak dikenali sebagai command valid dengan mengulangnya kembali.
+
+**Contoh:**
+
+```
+user> Hello!
+Hello!
+```
+
+**Implementasi:**
+
+* Di `shell.c`, command yang tidak cocok dengan keyword manapun akan dicetak ulang menggunakan `printString`.
+
+---
+
+## 2. Fitur gurt: yo
+
+Shell memiliki fitur khusus di mana:
+
+* Input `yo` akan merespon `gurt`.
+* Input `gurt` akan merespon `yo`.
+
+**Contoh:**
+
+```
+user> yo
+gurt
+user> gurt
+yo
+```
+
+**Implementasi:**
+
+* Cek string input. Jika `yo`, output `gurt`; jika `gurt`, output `yo`.
+
+---
+
+## 3. Ubah Nama User
+
+Command `user` digunakan untuk mengganti username shell.
+
+* `user <nama>` → mengubah username.
+* `user` → reset ke `user`.
+
+**Contoh:**
+
+```
+user> user Tia
+Username changed to Tia
+Tia> user
+Username changed to user
+```
+
+**Implementasi:**
+
+* Menyimpan nama username dalam variabel.
+* Mengubah prompt shell berdasarkan nama tersebut.
+
+---
+
+## 4. Grand Company (Warna Terminal & Prompt)
+
+Mengubah warna terminal dan prompt berdasarkan perintah:
+
+* `grandcompany maelstrom` → merah, prompt `@Storm`
+* `grandcompany twinadder` → kuning, prompt `@Serpent`
+* `grandcompany immortalflames` → biru, prompt `@Flame`
+* `grandcompany` tanpa argumen atau tidak valid → error
+* `clear` → kembalikan ke netral (putih, tanpa Grand Company)
+
+**Contoh:**
+
+```
+gurt> grandcompany maelstrom
+-- terminal merah --
+gurt@Storm> clear
+-- terminal netral --
+```
+
+**Implementasi:**
+
+* Mengatur warna karakter dengan interrupt `10h` atau `putInMemory`.
+* Clear layar dengan `clearScreen`.
+* Prompt ditambahkan sesuai status Grand Company.
+
+---
+
+## 5. Kalkulator Sederhana
+
+Shell dapat melakukan operasi matematika sederhana:
+
+* `add <x> <y>` → hasil x + y
+* `sub <x> <y>` → hasil x - y
+* `mul <x> <y>` → hasil x \* y
+* `div <x> <y>` → hasil x / y
+
+**Contoh:**
+
+```
+user> add 4 2
+6
+user> mul 3 -2
+-6
+```
+
+**Implementasi:**
+
+* Menggunakan `atoi` untuk konversi string ke integer.
+* Melakukan operasi matematika.
+* Output dikembalikan ke string dengan `itoa`.
+
+---
+
+## 6. Random Respon dari "yogurt"
+
+Command `yogurt` menghasilkan respon acak dari:
+
+* `yo`
+* `ts unami gng </3`
+* `sygau`
+
+**Contoh:**
+
+```
+user> yogurt
+gurt> ts unami gng </3
+```
+
+**Implementasi:**
+
+* Mengambil BIOS tick dengan `getBiosTick`.
+* Menggunakan hasil tick sebagai pseudo-random index dari list respon.
+
+---
+
+## 7. Makefile Build System
+
+Makefile disiapkan untuk membantu membangun sistem operasi ini dengan target:
+
+* `prepare` → membuat `floppy.img`
+* `bootloader` → compile `bootloader.asm`
+* `stdlib` → compile `std_lib.c`
+* `shell` → compile `shell.c`
+* `kernel` → compile `kernel.c` dan `kernel.asm`
+* `link` → menggabungkan seluruh binary menjadi `floppy.img`
+* `build` → menjalankan semua langkah di atas
+
+**Implementasi:**
+
+* Memanfaatkan `as`, `gcc`, dan `ld`.
+* Semua output berada di direktori `bin/`.
+
+---
+
+## Struktur Proyek
+
+```
+.
+├── include/
+│   ├── std_type.h
+│   ├── std_lib.h
+│   ├── kernel.h
+│   └── shell.h
+├── src/
+│   ├── kernel.asm
+│   ├── kernel.c
+│   └── shell.c
+├── bin/
+│   └── (output files)
+├── makefile
+└── readme.md
+```
+
+---
+
+## Catatan
+
+* Backspace dalam `readString` diimplementasikan untuk menghapus karakter input.
+* Warna teks diubah secara global agar semua teks setelahnya mengikuti warna Grand Company.
+
