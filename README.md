@@ -341,6 +341,25 @@ Makefile disiapkan untuk membantu membangun sistem operasi ini dengan target:
 * Memanfaatkan `as`, `gcc`, dan `ld`.
 * Semua output berada di direktori `bin/`.
 
+**Cara Menjalankan di Terminal**
+
+* Bersihkan build sebelumnya: 
+```
+make clean
+```
+
+* Buat image dari awal:
+```
+make build
+```
+> Output: bin/floppy.img yang siap dijalankan di emulator.
+
+
+* Jalankan target spesifik (contoh: hanya kernel):
+```
+make kernel
+```
+
 ---
 
 ## Struktur Proyek
